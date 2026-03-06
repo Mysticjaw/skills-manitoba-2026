@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://b4fesh1gwrato"]
+
+[sub_resource type="GDScript" id="GDScript_fi8a0"]
+script/source = "extends Control
+
+
+#change visiblility dependant on if remapping is happening
+func _process(_delta: float) -> void:
+	if get_parent().currentRemapK:
+		visible = true
+	else:
+		visible = false
+"
+
+[node name="remapPopup" type="Control" unique_id=457451629]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_fi8a0")
+
+[node name="popupPanel" type="Panel" parent="." unique_id=1679182364]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="text" type="Label" parent="." unique_id=1593776740]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -11.5
+offset_right = 102.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESS ANY KEY TO ASSIGN"
+horizontal_alignment = 1
+vertical_alignment = 1

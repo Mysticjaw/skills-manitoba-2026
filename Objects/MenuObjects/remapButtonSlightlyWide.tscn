@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cl4r4rbo0618i"]
+
+[ext_resource type="Script" uid="uid://c6mscmgx8c27r" path="res://Objects/MenuObjects/menu_option.gd" id="1_1j74g"]
+[ext_resource type="Texture2D" uid="uid://fsx872t3uihu" path="res://Sprites/UI/SpriteSheets/option.png" id="2_pbqwe"]
+[ext_resource type="Script" uid="uid://ck5l2nhcmbsd7" path="res://Objects/MenuObjects/checkSelectedSprite.gd" id="3_jiefl"]
+[ext_resource type="Script" uid="uid://clye3joq4a4f7" path="res://Objects/MenuObjects/remapperText.gd" id="4_pbqwe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwkj7"]
+size = Vector2(176, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbdnp"]
+atlas = ExtResource("2_pbqwe")
+region = Rect2(132, 0, 131, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ed4y"]
+atlas = ExtResource("2_pbqwe")
+region = Rect2(1, 0, 131, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f41pm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbdnp")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ed4y")
+}],
+"loop": true,
+"name": &"unselected",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_opcqn"]
+
+[node name="menuOption" type="StaticBody2D" unique_id=1967551589]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_1j74g")
+metadata/actionValue = 8
+metadata/remapVal = ""
+
+[node name="optionHitbox" type="CollisionShape2D" parent="." unique_id=493262622]
+shape = SubResource("RectangleShape2D_hwkj7")
+
+[node name="optionSprite" type="AnimatedSprite2D" parent="." unique_id=29858692]
+scale = Vector2(0.67175573, 0.8888889)
+sprite_frames = SubResource("SpriteFrames_f41pm")
+animation = &"selected"
+script = ExtResource("3_jiefl")
+
+[node name="optionText" type="Label" parent="." unique_id=80227009]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -12.5
+offset_right = 10.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_opcqn")
+horizontal_alignment = 1
+script = ExtResource("4_pbqwe")
+metadata/_edit_use_anchors_ = true

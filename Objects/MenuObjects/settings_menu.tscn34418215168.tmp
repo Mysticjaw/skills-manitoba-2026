@@ -1,0 +1,203 @@
+[gd_scene format=3 uid="uid://c8kwjd8kj1uhs"]
+
+[ext_resource type="Script" uid="uid://bmr8gk04lm6f1" path="res://Scripts/GlobalScripts/controllsHandeler.gd" id="1_dnpr3"]
+[ext_resource type="PackedScene" uid="uid://ds4uby7ahqofp" path="res://Objects/MenuObjects/menu_option_wide.tscn" id="1_tascj"]
+[ext_resource type="PackedScene" uid="uid://csnd4fkt4so8j" path="res://Objects/MenuObjects/menu_option_tab.tscn" id="2_8gl8o"]
+[ext_resource type="PackedScene" uid="uid://b0qsna7wlcene" path="res://Objects/MenuObjects/menu_toggle.tscn" id="3_6k5kq"]
+[ext_resource type="PackedScene" uid="uid://cl4r4rbo0618i" path="res://Objects/MenuObjects/remapButtonSlightlyWide.tscn" id="4_d3pjn"]
+[ext_resource type="PackedScene" uid="uid://c508bikpgr2rm" path="res://Objects/MenuObjects/remapButton.tscn" id="4_rwvgj"]
+[ext_resource type="PackedScene" uid="uid://b4fesh1gwrato" path="res://Objects/MenuObjects/remap_popup.tscn" id="6_gn741"]
+
+[node name="settingsMenu" type="Control" unique_id=1359301084]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dnpr3")
+
+[node name="btnReturn" parent="." unique_id=1967551589 instance=ExtResource("1_tascj")]
+z_index = 2
+position = Vector2(0, 250)
+metadata/labelText = "RETURN"
+metadata/actionValue = 5
+
+[node name="soundTab" parent="." unique_id=763716368 instance=ExtResource("2_8gl8o")]
+z_index = 2
+position = Vector2(-225, -275)
+metadata/labelText = "SOUND"
+metadata/actionValue = 6
+metadata/start = true
+
+[node name="area" type="Control" parent="soundTab" unique_id=1521572274]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 225.0
+offset_top = 300.0
+offset_right = 225.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="area" type="Panel" parent="soundTab/area" unique_id=1052884833]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -287.5
+offset_right = 325.0
+offset_bottom = 287.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="soundMute" parent="soundTab/area" unique_id=1186946451 instance=ExtResource("3_6k5kq")]
+metadata/labelText = "MUTE"
+metadata/valueName = "mute"
+
+[node name="KeyboardTab" parent="." unique_id=2111840797 instance=ExtResource("2_8gl8o")]
+z_index = 1
+position = Vector2(0, -275)
+metadata/labelText = "KEYBINDS"
+metadata/actionValue = 6
+metadata/tabValue = 2
+
+[node name="area" type="Control" parent="KeyboardTab" unique_id=2056974824]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 300.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="area" type="Panel" parent="KeyboardTab/area" unique_id=623271999]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -287.5
+offset_right = 325.0
+offset_bottom = 287.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="keyY" parent="KeyboardTab/area" unique_id=528645471 instance=ExtResource("4_d3pjn")]
+position = Vector2(150, -40)
+metadata/remapVal = "BtnY"
+
+[node name="keyA" parent="KeyboardTab/area" unique_id=1359185523 instance=ExtResource("4_d3pjn")]
+position = Vector2(150, 40)
+metadata/remapVal = "BtnA"
+
+[node name="keyX" parent="KeyboardTab/area" unique_id=850723042 instance=ExtResource("4_rwvgj")]
+position = Vector2(100, 0)
+metadata/remapVal = "BtnX"
+
+[node name="keyB" parent="KeyboardTab/area" unique_id=1666594938 instance=ExtResource("4_rwvgj")]
+position = Vector2(200, 0)
+metadata/remapVal = "BtnB"
+
+[node name="keyUp" parent="KeyboardTab/area" unique_id=1751698258 instance=ExtResource("4_d3pjn")]
+position = Vector2(-150, -40)
+metadata/remapVal = "Up"
+
+[node name="keyLeft" parent="KeyboardTab/area" unique_id=1713785467 instance=ExtResource("4_rwvgj")]
+position = Vector2(-200, 0)
+metadata/remapVal = "Left"
+
+[node name="keyRight" parent="KeyboardTab/area" unique_id=1513552208 instance=ExtResource("4_rwvgj")]
+position = Vector2(-100, 0)
+metadata/remapVal = "Right"
+
+[node name="keyPause" parent="KeyboardTab/area" unique_id=167028455 instance=ExtResource("4_rwvgj")]
+metadata/remapVal = "Pause"
+
+[node name="keyDown" parent="KeyboardTab/area" unique_id=1474638578 instance=ExtResource("4_d3pjn")]
+position = Vector2(-150, 40)
+metadata/remapVal = "Down"
+
+[node name="ControllerTab" parent="." unique_id=708638080 instance=ExtResource("2_8gl8o")]
+z_index = 1
+position = Vector2(225, -275)
+metadata/labelText = "CONTROLLER"
+metadata/actionValue = 6
+metadata/tabValue = 1
+
+[node name="area" type="Control" parent="ControllerTab" unique_id=1884303559]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = 300.0
+offset_right = -225.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="area" type="Panel" parent="ControllerTab/area" unique_id=1128736313]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -287.5
+offset_right = 325.0
+offset_bottom = 287.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="joyL" parent="ControllerTab/area" unique_id=882892505 instance=ExtResource("3_6k5kq")]
+position = Vector2(0, -100)
+metadata/labelText = "LEFT STICK"
+
+[node name="joyR" parent="ControllerTab/area" unique_id=20577182 instance=ExtResource("3_6k5kq")]
+metadata/labelText = "RIGHT STICK"
+metadata/valueName = "joyR"
+
+[node name="joyD" parent="ControllerTab/area" unique_id=233755499 instance=ExtResource("3_6k5kq")]
+position = Vector2(0, 100)
+metadata/labelText = "D PAD"
+metadata/valueName = "joyD"
+
+[node name="Panel" type="Panel" parent="." unique_id=93571657]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -350.0
+offset_right = 350.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="remapPopup" parent="." unique_id=457451629 instance=ExtResource("6_gn741")]
+z_index = 3
+layout_mode = 1

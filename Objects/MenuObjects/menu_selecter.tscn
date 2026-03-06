@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cd6orfehhcei6"]
+
+[ext_resource type="Script" uid="uid://b780frhwoonpi" path="res://Objects/MenuObjects/selecterScript.gd" id="1_33lyo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yadf"]
+size = Vector2(1, 1)
+
+[node name="menuSelecter" type="StaticBody2D" unique_id=803980637]
+script = ExtResource("1_33lyo")
+
+[node name="selectedHitbox" type="CollisionShape2D" parent="." unique_id=1555530391]
+shape = SubResource("RectangleShape2D_7yadf")
+disabled = true
+
+[node name="leftRay" type="RayCast2D" parent="." unique_id=799919513]
+target_position = Vector2(-840, 0)
+collision_mask = 16777216
+
+[node name="upRay" type="RayCast2D" parent="." unique_id=744182245]
+target_position = Vector2(0, -840)
+collision_mask = 16777216
+
+[node name="rightRay" type="RayCast2D" parent="." unique_id=132718638]
+target_position = Vector2(840, 0)
+collision_mask = 16777216
+
+[node name="downRay" type="RayCast2D" parent="." unique_id=1152960716]
+target_position = Vector2(0, 840)
+collision_mask = 16777216

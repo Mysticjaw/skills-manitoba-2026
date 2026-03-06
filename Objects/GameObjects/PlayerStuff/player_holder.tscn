@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://6qpqxktxd6cb"]
+
+[ext_resource type="Script" path="res://Objects/GameObjects/PlayerStuff/player_holder.gd" id="1_dxbk0"]
+
+[node name="playerHolder" type="Node2D" unique_id=2058353980]
+script = ExtResource("1_dxbk0")

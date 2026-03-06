@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://d3n6ft7aegjva"]
+
+[ext_resource type="PackedScene" uid="uid://6qpqxktxd6cb" path="res://Objects/GameObjects/PlayerStuff/player_holder.tscn" id="1_hmnrd"]
+[ext_resource type="PackedScene" uid="uid://bjgwvmcm63nps" path="res://Objects/GameObjects/PlayerStuff/player.tscn" id="2_67hrm"]
+[ext_resource type="PackedScene" uid="uid://vseraegiss5t" path="res://Objects/MenuObjects/pause_menu.tscn" id="3_67hrm"]
+
+[node name="world" type="Node2D" unique_id=1249737806]
+process_mode = 1
+
+[node name="playerHolder" parent="." unique_id=2058353980 instance=ExtResource("1_hmnrd")]
+
+[node name="Player3" parent="playerHolder" unique_id=1063713745 instance=ExtResource("2_67hrm")]
+position = Vector2(544, 288)
+metadata/followLevel = 3
+metadata/initChar = 3
+
+[node name="Player2" parent="playerHolder" unique_id=1352673009 instance=ExtResource("2_67hrm")]
+position = Vector2(544, 288)
+metadata/followLevel = 2
+metadata/initChar = 2
+
+[node name="Player1" parent="playerHolder" unique_id=452176657 instance=ExtResource("2_67hrm")]
+position = Vector2(544, 288)
+metadata/followLevel = 1
+metadata/initChar = 1
+
+[node name="Player0" parent="playerHolder" unique_id=777968809 instance=ExtResource("2_67hrm")]
+position = Vector2(544, 288)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=822849228]
+
+[node name="pauseMenu" parent="CanvasLayer" unique_id=59521360 instance=ExtResource("3_67hrm")]
+
+[node name="Panel" type="Panel" parent="." unique_id=1413760833]
+offset_right = 440.0
+offset_bottom = 336.0
+metadata/_edit_use_anchors_ = true

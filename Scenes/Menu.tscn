@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://b80cbs1hmlo5a"]
+
+[ext_resource type="PackedScene" uid="uid://kwhbp2fq1ig4" path="res://Objects/MenuObjects/menu_option.tscn" id="1_3kf3n"]
+[ext_resource type="Script" uid="uid://bbnxyhiapvs3n" path="res://Scenes/mainMenu.gd" id="1_syfuq"]
+[ext_resource type="PackedScene" uid="uid://cd6orfehhcei6" path="res://Objects/MenuObjects/menu_selecter.tscn" id="2_6pedr"]
+[ext_resource type="PackedScene" uid="uid://c8kwjd8kj1uhs" path="res://Objects/MenuObjects/settings_menu.tscn" id="4_s2c3o"]
+
+[node name="Menu" type="Control" unique_id=368525287]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.25598145
+offset_top = -0.13198853
+offset_right = 0.25598145
+offset_bottom = 0.13198853
+grow_horizontal = 2
+grow_vertical = 2
+metadata/Selected = false
+
+[node name="buttonHandler" type="PanelContainer" parent="." unique_id=773320027]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_syfuq")
+
+[node name="menuSelecter" parent="buttonHandler" unique_id=803980637 instance=ExtResource("2_6pedr")]
+position = Vector2(-344, 92)
+
+[node name="menuButtons" type="Control" parent="buttonHandler" unique_id=1659710644]
+layout_mode = 2
+
+[node name="btnNewGame" parent="buttonHandler/menuButtons" unique_id=1967551589 instance=ExtResource("1_3kf3n")]
+position = Vector2(-345, 125)
+metadata/labelText = "NEW GAME"
+metadata/actionValue = 1
+
+[node name="btnContinue" parent="buttonHandler/menuButtons" unique_id=926336890 instance=ExtResource("1_3kf3n")]
+position = Vector2(-115, 125)
+metadata/labelText = "CONTINUE"
+metadata/actionValue = 2
+
+[node name="btnOptions" parent="buttonHandler/menuButtons" unique_id=1457515390 instance=ExtResource("1_3kf3n")]
+position = Vector2(115, 125)
+metadata/labelText = "OPTIONS"
+metadata/actionValue = 3
+
+[node name="btnQuit" parent="buttonHandler/menuButtons" unique_id=1906353754 instance=ExtResource("1_3kf3n")]
+position = Vector2(345, 125)
+metadata/labelText = "QUIT"
+metadata/actionValue = 4
+
+[node name="Title" type="Label" parent="buttonHandler/menuButtons" unique_id=446187688]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 95.0
+offset_bottom = 31.0
+text = "Tower game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="settingsMenu" parent="buttonHandler" unique_id=455125867 instance=ExtResource("4_s2c3o")]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="buttonHandler" unique_id=1233553243]
+layout_mode = 2
