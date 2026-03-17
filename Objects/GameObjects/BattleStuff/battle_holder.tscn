@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://1w1s62t10ik8"]
+
+[ext_resource type="Script" uid="uid://c6cfsmxrmp7nt" path="res://Objects/GameObjects/BattleStuff/battle_holder.gd" id="1_4gnsm"]
+
+[node name="battleHolder" type="Node2D" unique_id=1110322732]
+script = ExtResource("1_4gnsm")

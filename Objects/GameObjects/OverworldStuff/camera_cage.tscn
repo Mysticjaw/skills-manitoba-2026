@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cnfnt1coqwv1s"]
+
+[ext_resource type="Script" uid="uid://byk2rbky87c0f" path="res://Objects/GameObjects/OverworldStuff/camera_cage.gd" id="1_j3m4e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpe54"]
+size = Vector2(1, 1)
+
+[node name="cameraCage" type="StaticBody2D" unique_id=1097770858]
+collision_layer = 65536
+collision_mask = 0
+script = ExtResource("1_j3m4e")
+metadata/primary = false
+
+[node name="cageHitbox" type="CollisionShape2D" parent="." unique_id=1326575375]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_qpe54")

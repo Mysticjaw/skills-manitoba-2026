@@ -1,5 +1,9 @@
 extends Node2D
 
+@onready var battleStuff = load("res://Objects/GameObjects/BattleStuff/battle_everything.tscn")
+
+var battle: Node = null
+
 #the amount of locations stored
 var maxLocationsSize: int = 16
 #it won't let me assign null to Vector2 variables so it's an alternative
@@ -19,13 +23,17 @@ var thisLocation
 #could also be followed by other things in the future
 var pastLocations: Array[Vector2]
 #which one are they following?
-var mainPlayer
+var players: Array[Node] = [null, null, null, null]
+# goes slightly in front of you to better see what you're doing
+var cameraPos: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	#rezising the array to the max size and filling it with NULL_VALUEs
 	pastLocations.resize(maxLocationsSize)
 	for i in maxLocationsSize:
 		pastLocations[i] = NULL_VAUE
+	players.resize(get_children().size())
+	cameraPos = MiscGlobals.startPos
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,4 +67,11 @@ func newLocation(location: Vector2) -> void:
 		#add the new location to the end
 		pastLocations[0] = location
 		
+	
+func setPlayer(newPlayer: Node, value: int):
+	players[value] = newPlayer
+
+func startBattle():
+	battle = battleStuff.instantiate()
+	add_child(battle)
 	

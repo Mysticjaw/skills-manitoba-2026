@@ -1,6 +1,29 @@
 [gd_scene format=3 uid="uid://6qpqxktxd6cb"]
 
-[ext_resource type="Script" path="res://Objects/GameObjects/PlayerStuff/player_holder.gd" id="1_dxbk0"]
+[ext_resource type="Script" uid="uid://cpmvcagdd3o22" path="res://Objects/GameObjects/PlayerStuff/player_holder.gd" id="1_dxbk0"]
+[ext_resource type="Script" uid="uid://ccd2pj142k5ks" path="res://Objects/GameObjects/PlayerStuff/camera.gd" id="2_ni2mx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni2mx"]
+size = Vector2(2, 2)
 
 [node name="playerHolder" type="Node2D" unique_id=2058353980]
 script = ExtResource("1_dxbk0")
+
+[node name="cameraHolder" type="Node2D" parent="." unique_id=1804749437]
+script = ExtResource("2_ni2mx")
+
+[node name="camera" type="Camera2D" parent="cameraHolder" unique_id=2089119999]
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
+
+[node name="cameraArea" type="Area2D" parent="cameraHolder" unique_id=655549888]
+collision_layer = 0
+collision_mask = 65536
+
+[node name="cameraHitbox" type="CollisionShape2D" parent="cameraHolder/cameraArea" unique_id=426777299]
+shape = SubResource("RectangleShape2D_ni2mx")
+
+[connection signal="body_entered" from="cameraHolder/cameraArea" to="cameraHolder" method="_on_camera_area_body_entered"]
+[connection signal="body_exited" from="cameraHolder/cameraArea" to="cameraHolder" method="_on_camera_area_body_exited"]

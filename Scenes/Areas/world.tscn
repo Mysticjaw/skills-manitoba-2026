@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://6qpqxktxd6cb" path="res://Objects/GameObjects/PlayerStuff/player_holder.tscn" id="1_hmnrd"]
 [ext_resource type="PackedScene" uid="uid://bjgwvmcm63nps" path="res://Objects/GameObjects/PlayerStuff/player.tscn" id="2_67hrm"]
 [ext_resource type="PackedScene" uid="uid://vseraegiss5t" path="res://Objects/MenuObjects/pause_menu.tscn" id="3_67hrm"]
+[ext_resource type="PackedScene" uid="uid://cnfnt1coqwv1s" path="res://Objects/GameObjects/OverworldStuff/camera_cage.tscn" id="5_2pjc6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gwl6k"]
 
 [node name="world" type="Node2D" unique_id=1249737806]
 process_mode = 1
@@ -31,7 +34,44 @@ position = Vector2(544, 288)
 
 [node name="pauseMenu" parent="CanvasLayer" unique_id=59521360 instance=ExtResource("3_67hrm")]
 
-[node name="Panel" type="Panel" parent="." unique_id=1413760833]
-offset_right = 440.0
-offset_bottom = 336.0
-metadata/_edit_use_anchors_ = true
+[node name="cameraCage0" parent="." unique_id=1097770858 instance=ExtResource("5_2pjc6")]
+position = Vector2(856, -1368)
+scale = Vector2(3090.6472, 1321.9784)
+metadata/primary = true
+
+[node name="cameraCage1" parent="." unique_id=1108470845 instance=ExtResource("5_2pjc6")]
+position = Vector2(864, -56)
+scale = Vector2(3090.6472, 1321.9784)
+metadata/primary = true
+
+[node name="cameraCage2" parent="." unique_id=183433618 instance=ExtResource("5_2pjc6")]
+position = Vector2(2672, -984.00006)
+scale = Vector2(1177.8097, 841.7818)
+
+[node name="Panel2" type="Panel" parent="." unique_id=2039185175]
+material = SubResource("CanvasItemMaterial_gwl6k")
+offset_left = 832.0
+offset_top = -1392.0
+offset_right = 3952.0
+offset_bottom = -48.0
+
+[node name="Panel3" type="Panel" parent="." unique_id=196611818]
+material = SubResource("CanvasItemMaterial_gwl6k")
+offset_left = 2672.0
+offset_top = -984.0
+offset_right = 3864.0
+offset_bottom = -136.0
+
+[node name="Panel4" type="Panel" parent="." unique_id=691380653]
+material = SubResource("CanvasItemMaterial_gwl6k")
+offset_left = 856.0
+offset_top = -88.0
+offset_right = 3976.0
+offset_bottom = 1256.0
+
+[node name="Panel5" type="Panel" parent="." unique_id=2132535379]
+material = SubResource("CanvasItemMaterial_gwl6k")
+offset_left = 864.0
+offset_top = -40.0
+offset_right = 3984.0
+offset_bottom = 1304.0
