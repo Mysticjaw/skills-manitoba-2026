@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var battleStuff = load("res://Objects/GameObjects/BattleStuff/battle_everything.tscn")
+@onready var battleStuff = preload("res://Objects/GameObjects/BattleStuff/battle_everything.tscn")
 
 var battle: Node = null
 
@@ -34,6 +34,7 @@ func _ready() -> void:	#rezising the array to the max size and filling it with N
 		pastLocations[i] = NULL_VAUE
 	players.resize(get_children().size())
 	cameraPos = MiscGlobals.startPos
+	startBattle()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,4 +75,3 @@ func setPlayer(newPlayer: Node, value: int):
 func startBattle():
 	battle = battleStuff.instantiate()
 	add_child(battle)
-	

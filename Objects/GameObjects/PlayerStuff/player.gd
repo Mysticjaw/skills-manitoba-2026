@@ -32,6 +32,10 @@ const SLIDE_VAL: int = -2
 const WAIT_VAL: int = -3
 const BATTLE_VAL: int = -4
 
+
+var char: int
+const SUPPORT_VAL: int = 3
+
 #is the player in your control
 var movable: bool = true
 
@@ -48,6 +52,7 @@ func _ready() -> void:
 	global_position = MiscGlobals.startPos
 	#setting up metadatas to be accsessed more easily and setting up the initial varibles
 	changeCharacter(get_meta("initChar"))
+	char = get_meta("initChar")
 	storedY = get_meta("startDirection")
 	if get_meta("startFlipped"):
 		storedX = -1
@@ -188,6 +193,7 @@ func _physics_process(delta: float) -> void:
 #change the character to one of a specific one based on a value (as in the sprite)
 func changeCharacter(no: int):
 	sprite.loadSprite("res://Objects/GameObjects/PlayerStuff/player"+str(no)+"SpriteFrames.tres")	
+	char = no
 
 #start sliding somewhere
 func slideTo(slidePos, times, next: int, walking: bool):
