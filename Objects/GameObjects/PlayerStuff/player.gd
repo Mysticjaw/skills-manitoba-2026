@@ -1,4 +1,5 @@
 extends CharacterBody2D
+
 #preparing nodes
 @onready var sprite = get_node("playerSprite")
 @onready var anim = get_node("playerAnimations")
@@ -22,8 +23,8 @@ var cameraMoving: bool = true
 #constants
 const PERIOD: float = 0.05	#how oftan do you update past locations
 const POS_FREQ: int = 4	#how many past positions per placement
-const SPEED = 350.0	#speed
-const CAMERA_AHEAD: int = 1	#how ahead the camera should be
+const SPEED = 400.0	#speed
+const CAMERA_AHEAD: float = 1.0	#how ahead the camera should be
 const CAM_FREEZE_AREA = 100
 #the values for followPos
 const MAIN_VAL: int = 0
@@ -33,7 +34,7 @@ const WAIT_VAL: int = -3
 const BATTLE_VAL: int = -4
 
 
-var char: int
+var charVal: int
 const SUPPORT_VAL: int = 3
 
 #is the player in your control
@@ -52,7 +53,7 @@ func _ready() -> void:
 	global_position = MiscGlobals.startPos
 	#setting up metadatas to be accsessed more easily and setting up the initial varibles
 	changeCharacter(get_meta("initChar"))
-	char = get_meta("initChar")
+	charVal = get_meta("initChar")
 	storedY = get_meta("startDirection")
 	if get_meta("startFlipped"):
 		storedX = -1
@@ -122,9 +123,14 @@ func _physics_process(delta: float) -> void:
 		|| abs(move_toward(0, parent.cameraPos.y - global_position.y, CAM_FREEZE_AREA)) == CAM_FREEZE_AREA):
 			cameraMoving = true
 		if cameraMoving:
+			print("aa")
+			var velocityMult = 1
+			if parent.pastLocations[1] == global_position:
+				velocityMult = 0
 			movingTime += delta
-			parent.cameraPos.x = move_toward(parent.cameraPos.x, global_position.x + (velocity.x * CAMERA_AHEAD), abs(parent.cameraPos.x - global_position.x + (velocity.x * CAMERA_AHEAD)) * movingTime)
-			parent.cameraPos.y = move_toward(parent.cameraPos.y, global_position.y + (velocity.y * CAMERA_AHEAD), abs(parent.cameraPos.y - global_position.y + (velocity.y * CAMERA_AHEAD)) * movingTime)
+			parent.cameraPos.x = move_toward(parent.cameraPos.x, global_position.x + (velocity.x * velocityMult * CAMERA_AHEAD), abs(parent.cameraPos.x - global_position.x + (velocity.x * velocityMult * CAMERA_AHEAD)) * movingTime)
+			parent.cameraPos.y = move_toward(parent.cameraPos.y, global_position.y + (velocity.y * velocityMult * CAMERA_AHEAD), abs(parent.cameraPos.y - global_position.y + (velocity.y * velocityMult * CAMERA_AHEAD)) * movingTime)
+			
 		move_and_slide()
 	
 	
@@ -139,8 +145,8 @@ func _physics_process(delta: float) -> void:
 			#print("MOVING")
 			#getting the new position which is the spot along the space in between the past locations
 			var newPos = parent.pastLocations[followPos*POS_FREQ] + ((parent.pastLocations[(followPos*POS_FREQ) - 1] - parent.pastLocations[followPos * POS_FREQ]) * parent.periodTime / PERIOD)
-			if followPos == 1:
-				print(newPos)
+			#if followPos == 1:
+				#print(newPos)
 			if global_position.y - newPos.y != 0:	#sprite stuff, dependent on the direction it's moved this frame
 				storedY = int(move_toward(0, 1/(global_position.y - newPos.y) + global_position.y - newPos.y, 1))
 				storedX = 0
@@ -164,11 +170,14 @@ func _physics_process(delta: float) -> void:
 				if slideTimes[0] - delta <= 0:
 					global_position = slidingTo[0]
 					if slideTimes.size() > 1:
+						print("UHHHHHH")
 						slideTimes = MiscGlobals.removeFirst(slideTimes)
 						slideTimes = MiscGlobals.removeFirst(slideTimes)
 					else:
 						followPos = nextFollowPos
-						
+						if followPos == BATTLE_VAL && charVal != SUPPORT_VAL:
+							battleSpot.get_parent().get_parent().inMenu = true
+						print("moving on")
 				else:
 					if abs(slidingTo[0].x - global_position.x) >= abs(slidingTo[0].y - global_position.y):
 						storedY = 0
@@ -186,6 +195,10 @@ func _physics_process(delta: float) -> void:
 					else:
 						sprite.flip_h = false
 					global_position += (slidingTo[0] - global_position) * (delta / slideTimes[0])
+				slideTimes[0] -= delta
+				
+			BATTLE_VAL:
+				global_position = battleSpot.global_position
 				
 			
 		
@@ -193,32 +206,23 @@ func _physics_process(delta: float) -> void:
 #change the character to one of a specific one based on a value (as in the sprite)
 func changeCharacter(no: int):
 	sprite.loadSprite("res://Objects/GameObjects/PlayerStuff/player"+str(no)+"SpriteFrames.tres")	
-	char = no
+	charVal = no
 
 #start sliding somewhere
-func slideTo(slidePos, times, next: int, walking: bool):
-	if typeof(slidePos) == TYPE_PACKED_VECTOR2_ARRAY:
-		slidingTo = slidePos
-	elif typeof(slidePos) == TYPE_VECTOR2:
-		slidingTo = [slidePos]
-	else:
-		print("slidePos wasn't a vector stupid")
-		return
-	if typeof(slidePos) == TYPE_PACKED_FLOAT32_ARRAY || typeof(slidePos) == TYPE_PACKED_FLOAT64_ARRAY:
-		slideTimes = times
-	elif typeof(slidePos) == TYPE_FLOAT:
-		slideTimes = [times]
-	else:
-		print("slideTimes wasn't a float idiot")
-		return
+func slideTo(slidePos: Array[Vector2], times: Array[float], next: int, walking: bool):
+	slidingTo = slidePos
+	slideTimes = times
 	nextFollowPos = next
 	followPos = SLIDE_VAL
 	slideWalking = walking
 
 
 func battleTurnStart():
+	print(battleSpot.global_position)
+	print(str(typeof(battleSpot.global_position)) + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa")
 	slideTo([battleSpot.global_position], [0.5], BATTLE_VAL, false)
 
 func battleStart(pinSpot: Node):
 	battleSpot = pinSpot
+	pinSpot.player = self
 	battleTurnStart()

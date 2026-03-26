@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 				followMode = nextMode
 				global_position = slidingTo
 			else:
-				global_position = global_position + ((slidingTo - global_position) * delta / slidingTime)
+				global_position += ((slidingTo - global_position) * delta / slidingTime)
 				slidingTime -= delta
 			
 		
@@ -143,3 +143,6 @@ func _on_camera_area_body_entered(body: Node2D) -> void:
 		
 	cameraBoundObjects.resize(cameraBoundObjects.size() + 1)
 	cameraBoundObjects[cameraBoundObjects.size() - 1] = body
+
+func followPlayer():
+	followMode = FOLLOW_VAL

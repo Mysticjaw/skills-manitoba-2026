@@ -2,10 +2,40 @@
 
 [ext_resource type="Script" uid="uid://c6cfsmxrmp7nt" path="res://Objects/GameObjects/BattleStuff/battle_holder.gd" id="1_4gnsm"]
 
+[sub_resource type="GDScript" id="GDScript_070r5"]
+script/source = "extends Label
+
+var parents: Array[Node]
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	parents = [get_parent(), get_parent().get_parent(), get_parent().get_parent().get_parent()]
+	parents[0].visible = false
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	parents[0].rotation = -parents[2].rotation
+	if parents[1].player != null:
+		if parents[1].player.charVal == parents[1].player.SUPPORT_VAL:
+			parents[0].visible = false
+			return
+		else:
+			parents[0].visible = true
+		text = str(MiscGlobals.manas[parents[1].player.charVal]) + \"/\" + str(MiscGlobals.maxManas[parents[1].player.charVal])
+		if parents[1].player.followPos == parents[1].player.BATTLE_VAL:
+			parents[0].position = Vector2(0,0)
+		else:
+			parents[0].global_position = parents[1].player.global_position
+		
+	else:
+		parents[0].visible = false
+"
+
 [sub_resource type="GDScript" id="GDScript_4gnsm"]
 script/source = "extends Label
 
-
+#var grandparent = get_parent().get_parent()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -13,36 +43,43 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
-"
-
-[sub_resource type="GDScript" id="GDScript_070r5"]
-script/source = "extends Label
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	if get_parent().get_parent().player != null:
+		text = str(MiscGlobals.manas[get_parent().get_parent().player.charVal]) + \"/\" + str(MiscGlobals.maxManas[get_parent().get_parent().player.charVal])
+	
 "
 
 [node name="battleHolder" type="Node2D" unique_id=1110322732]
 script = ExtResource("1_4gnsm")
 
-[node name="textHealth" type="Label" parent="." unique_id=729290772]
-offset_left = 16.0
-offset_top = -40.0
-offset_right = 56.0
-offset_bottom = -17.0
+[node name="playerStats" type="Node2D" parent="." unique_id=1533537929]
+
+[node name="textMana" type="Label" parent="playerStats" unique_id=239354811]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -24.0
+offset_right = -34.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "MANA"
+horizontal_alignment = 2
+script = SubResource("GDScript_070r5")
+
+[node name="textHealth" type="Label" parent="playerStats" unique_id=729290772]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = -1.0
+offset_right = -34.0
+offset_bottom = 22.0
+grow_horizontal = 0
+text = "HEALTH"
+horizontal_alignment = 2
 script = SubResource("GDScript_4gnsm")
 
-[node name="textMana" type="Label" parent="." unique_id=239354811]
-offset_left = 16.0
-offset_top = -40.0
-offset_right = 56.0
-offset_bottom = -17.0
-script = SubResource("GDScript_070r5")
+[node name="buttonChoices" type="Node2D" parent="." unique_id=1532016701]

@@ -66,6 +66,7 @@ func processMovement():
 	if !stickPressed || !MiscGlobals.pad:	#if either using keyboard or not already holding a direction
 		if (directionX < 0 && abs(directionX) > abs(directionY) && MiscGlobals.pad) || Input.is_action_just_pressed("trueLeft"):	#get input
 				#update directions
+				
 			if leftwards:
 				rightwards = current
 				current = leftwards

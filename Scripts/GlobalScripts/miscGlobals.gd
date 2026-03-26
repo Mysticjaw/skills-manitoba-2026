@@ -4,11 +4,21 @@ var startPos: Vector2 = Vector2(0, 0)
 
 var pad: bool = false
 
+
+const inputBuffer = 0.3
+
 var healths: Array[int]
 var maxHealths: Array[int]
 
 var manas: Array[int]
 var maxManas: Array[int]
+
+func _ready() -> void:
+	maxHealths = [100, 100, 100, 100]
+	healths = [100, 100, 100, 100]
+	maxManas = [100, 100, 100, 100]
+	manas = [100, 100, 100, 100]
+
 
 func removeFirst(arr: Array) -> Array:
 	if arr.size():

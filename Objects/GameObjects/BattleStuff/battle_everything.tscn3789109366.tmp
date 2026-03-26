@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://mq26fqj0hd2b"]
+
+[ext_resource type="Script" uid="uid://5puvjnx6p8sv" path="res://Objects/GameObjects/BattleStuff/battle_everything.gd" id="1_3byyl"]
+[ext_resource type="PackedScene" uid="uid://1w1s62t10ik8" path="res://Objects/GameObjects/BattleStuff/battle_holder.tscn" id="2_5h20o"]
+
+[node name="battleEverything" type="Node2D" unique_id=1280862224]
+script = ExtResource("1_3byyl")
+
+[node name="playerWheel" type="Node2D" parent="." unique_id=502858901]
+position = Vector2(0, 40)
+
+[node name="holder1" parent="playerWheel" unique_id=1110322732 instance=ExtResource("2_5h20o")]
+position = Vector2(200, 0)
+rotation = 1.2339478
+
+[node name="holder2" parent="playerWheel" unique_id=675278463 instance=ExtResource("2_5h20o")]
+position = Vector2(-100, 173.2)
+
+[node name="holder3" parent="playerWheel" unique_id=395541967 instance=ExtResource("2_5h20o")]
+position = Vector2(-100, -173.2)
+
+[node name="holder4" parent="playerWheel" unique_id=1155986320 instance=ExtResource("2_5h20o")]
+position = Vector2(-200, 0)
+
+[node name="holder0" parent="." unique_id=764594130 instance=ExtResource("2_5h20o")]
+position = Vector2(-200, 160)

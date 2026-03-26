@@ -17,10 +17,10 @@ position = Vector2(0, 40)
 position = Vector2(200, 0)
 
 [node name="holder2" parent="playerWheel" unique_id=675278463 instance=ExtResource("2_5h20o")]
-position = Vector2(-100, -173.2)
+position = Vector2(-100, 173.2)
 
 [node name="holder3" parent="playerWheel" unique_id=395541967 instance=ExtResource("2_5h20o")]
-position = Vector2(-100, 173.2)
+position = Vector2(-100, -173.2)
 
 [node name="holder4" parent="playerWheel" unique_id=1155986320 instance=ExtResource("2_5h20o")]
 position = Vector2(-200, 0)
@@ -34,8 +34,9 @@ scale = Vector2(1858.5522, 419.98514)
 metadata/_edit_lock_ = true
 
 [node name="outerCage" parent="." unique_id=562063103 instance=ExtResource("3_7qbc0")]
-position = Vector2(-288, -392.00003)
-scale = Vector2(1527.4572, 930.9538)
+position = Vector2(-296, -264)
+scale = Vector2(1140.9482, 627.1567)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1690665903]
 collision_mask = 0

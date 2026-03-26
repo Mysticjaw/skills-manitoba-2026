@@ -27,14 +27,18 @@ var players: Array[Node] = [null, null, null, null]
 # goes slightly in front of you to better see what you're doing
 var cameraPos: Vector2
 
+var camera: Node
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	#rezising the array to the max size and filling it with NULL_VALUEs
 	pastLocations.resize(maxLocationsSize)
 	for i in maxLocationsSize:
 		pastLocations[i] = NULL_VAUE
-	players.resize(get_children().size())
+	print(get_children())
+	players.resize(get_children().size() - 1)
+	print(players.size())
 	cameraPos = MiscGlobals.startPos
-	startBattle()
+	#startBattle()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,5 +77,23 @@ func setPlayer(newPlayer: Node, value: int):
 	players[value] = newPlayer
 
 func startBattle():
-	battle = battleStuff.instantiate()
-	add_child(battle)
+	if !battle:
+		battle = battleStuff.instantiate()
+		add_child(battle)	#the ready happens after this
+		print(players.size())
+		battle.prepareBattle(players)
+
+func bringToFront(newFront: Node):
+	var newFrontVal: int = -1
+	for i in players.size():
+		if players[i] == newFront:
+			newFrontVal = i
+	if newFrontVal == -1:
+		print("YOU PUT IN A NON PLAYER OF MESSED UP STUPID")
+	if newFrontVal >= players.size():
+		print("HEYYYYYYYY THAT ISN'T A PLAYER SO YOU CAN'T BRING OT THE FRONT!!!")
+		return
+	var newFrontStorage: Node = players[newFrontVal]
+	for i in newFrontVal:
+		players[i + 1] = players[i]
+	players[0] = newFrontStorage
