@@ -1,26 +1,19 @@
 [gd_scene format=3 uid="uid://b0qsna7wlcene"]
 
 [ext_resource type="Script" uid="uid://c6mscmgx8c27r" path="res://Objects/MenuObjects/menu_option.gd" id="1_qmw15"]
-[ext_resource type="Texture2D" uid="uid://fsx872t3uihu" path="res://Sprites/UI/SpriteSheets/option.png" id="2_3elvf"]
+[ext_resource type="Texture2D" uid="uid://b7bp8j8tkwiog" path="res://Sprites/UI/Individuals/selected.png" id="2_a1lqp"]
 [ext_resource type="Texture2D" uid="uid://2ilwe4bsfl5j" path="res://Sprites/UI/SpriteSheets/checkBox.png" id="3_3elvf"]
 [ext_resource type="Script" uid="uid://ck5l2nhcmbsd7" path="res://Objects/MenuObjects/checkSelectedSprite.gd" id="3_7eb4d"]
+[ext_resource type="Texture2D" uid="uid://cxigxk4o62564" path="res://Sprites/UI/Individuals/button.png" id="3_oxbxk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1on"]
 size = Vector2(184, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xbdnp"]
-atlas = ExtResource("2_3elvf")
-region = Rect2(132, 0, 131, 54)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ed4y"]
-atlas = ExtResource("2_3elvf")
-region = Rect2(1, 0, 131, 54)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_f41pm"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7yhr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xbdnp")
+"texture": ExtResource("2_a1lqp")
 }],
 "loop": true,
 "name": &"selected",
@@ -28,7 +21,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1ed4y")
+"texture": ExtResource("3_oxbxk")
 }],
 "loop": true,
 "name": &"unselected",
@@ -100,11 +93,12 @@ metadata/valueName = "joyL"
 scale = Vector2(10, 1)
 shape = SubResource("RectangleShape2D_eh1on")
 
-[node name="optionSprite" type="AnimatedSprite2D" parent="." unique_id=29858692]
-position = Vector2(-7.6293945e-06, 0)
-scale = Vector2(1.5174572, 1.0740741)
-sprite_frames = SubResource("SpriteFrames_f41pm")
-animation = &"selected"
+[node name="optionSprite" type="AnimatedSprite2D" parent="." unique_id=1399177376]
+position = Vector2(-87.99999, -32)
+scale = Vector2(0.40993306, 0.2901554)
+sprite_frames = SubResource("SpriteFrames_u7yhr")
+animation = &"unselected"
+centered = false
 script = ExtResource("3_7eb4d")
 
 [node name="optionText" type="Label" parent="." unique_id=80227009]
@@ -113,20 +107,20 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -85.0
-offset_top = -11.5
-offset_right = 15.0
-offset_bottom = 11.5
+offset_left = -64.0
+offset_top = -13.0
+offset_right = 36.0
+offset_bottom = 10.0
 grow_horizontal = 0
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_opcqn")
-horizontal_alignment = 1
+horizontal_alignment = 2
 script = SubResource("GDScript_opcqn")
 metadata/labelText = "aaaa"
 metadata/_edit_use_anchors_ = true
 
 [node name="checkSprite" type="AnimatedSprite2D" parent="." unique_id=632386151]
-position = Vector2(32, 0)
+position = Vector2(56, -4)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1jlrk")
 animation = &"false"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2t046if1msqi"
-path="res://.godot/imported/lonePillarSheet.png-1c12892da70450825de445e65645ede2.ctex"
+uid="uid://cxigxk4o62564"
+path="res://.godot/imported/button.png-f720695578de6451b492e9ec73142044.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/tilemaps/lonePillarSheet.png"
-dest_files=["res://.godot/imported/lonePillarSheet.png-1c12892da70450825de445e65645ede2.ctex"]
+source_file="res://Sprites/UI/Individuals/button.png"
+dest_files=["res://.godot/imported/button.png-f720695578de6451b492e9ec73142044.ctex"]
 
 [params]
 
