@@ -124,12 +124,15 @@ func _physics_process(delta: float) -> void:
 			cameraMoving = true
 		if cameraMoving:
 			print("aa")
-			var velocityMult = 1
-			if parent.pastLocations[1] == global_position:
-				velocityMult = 0
+			var velocityMult = Vector2(1, 1)
+			if abs(move_toward(parent.pastLocations[1].x, 0,  global_position.x)) <= 0.01:
+				velocityMult.x = 0
+			if abs(move_toward(parent.pastLocations[1].y, 0,  global_position.y)) <= 0.01:
+				velocityMult.y = 0
+			print(velocityMult)
 			movingTime += delta
-			parent.cameraPos.x = move_toward(parent.cameraPos.x, global_position.x + (velocity.x * velocityMult * CAMERA_AHEAD), abs(parent.cameraPos.x - global_position.x + (velocity.x * velocityMult * CAMERA_AHEAD)) * movingTime)
-			parent.cameraPos.y = move_toward(parent.cameraPos.y, global_position.y + (velocity.y * velocityMult * CAMERA_AHEAD), abs(parent.cameraPos.y - global_position.y + (velocity.y * velocityMult * CAMERA_AHEAD)) * movingTime)
+			parent.cameraPos.x = move_toward(parent.cameraPos.x, global_position.x + (velocity.x * velocityMult.x * CAMERA_AHEAD), abs(parent.cameraPos.x - global_position.x + (velocity.x * velocityMult.x * CAMERA_AHEAD)) * movingTime)
+			parent.cameraPos.y = move_toward(parent.cameraPos.y, global_position.y + (velocity.y * velocityMult.y * CAMERA_AHEAD), abs(parent.cameraPos.y - global_position.y + (velocity.y * velocityMult.y * CAMERA_AHEAD)) * movingTime)
 			
 		move_and_slide()
 	
