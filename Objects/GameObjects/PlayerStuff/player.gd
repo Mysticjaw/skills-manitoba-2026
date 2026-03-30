@@ -33,6 +33,7 @@ const SLIDE_VAL: int = -2
 const WAIT_VAL: int = -3
 const BATTLE_VAL: int = -4
 
+var midAttack: bool = false
 
 var charVal: int
 const SUPPORT_VAL: int = 3
@@ -123,19 +124,20 @@ func _physics_process(delta: float) -> void:
 		|| abs(move_toward(0, parent.cameraPos.y - global_position.y, CAM_FREEZE_AREA)) == CAM_FREEZE_AREA):
 			cameraMoving = true
 		if cameraMoving:
-			print("aa")
 			var velocityMult = Vector2(1, 1)
-			if abs(move_toward(parent.pastLocations[1].x, 0,  global_position.x)) <= 0.01:
-				velocityMult.x = 0
-			if abs(move_toward(parent.pastLocations[1].y, 0,  global_position.y)) <= 0.01:
+			if abs(parent.pastLocations[1].x - global_position.x) <= 0.1:
+				velocityMult.x = 0	
+			if abs(parent.pastLocations[1].y - global_position.y) <= 0.1:
 				velocityMult.y = 0
-			print(velocityMult)
 			movingTime += delta
-			parent.cameraPos.x = move_toward(parent.cameraPos.x, global_position.x + (velocity.x * velocityMult.x * CAMERA_AHEAD), abs(parent.cameraPos.x - global_position.x + (velocity.x * velocityMult.x * CAMERA_AHEAD)) * movingTime)
-			parent.cameraPos.y = move_toward(parent.cameraPos.y, global_position.y + (velocity.y * velocityMult.y * CAMERA_AHEAD), abs(parent.cameraPos.y - global_position.y + (velocity.y * velocityMult.y * CAMERA_AHEAD)) * movingTime)
+			parent.cameraPos.x = move_toward(parent.cameraPos.x, global_position.x + (velocity.x * velocityMult.x * CAMERA_AHEAD), abs(parent.cameraPos.x - global_position.x + (velocity.x * CAMERA_AHEAD)) * movingTime)
+			parent.cameraPos.y = move_toward(parent.cameraPos.y, global_position.y + (velocity.y * velocityMult.y * CAMERA_AHEAD), abs(parent.cameraPos.y - global_position.y + (velocity.y * CAMERA_AHEAD)) * movingTime)
 			
 		move_and_slide()
-	
+		
+		if Input.is_action_just_pressed("trueBtnA") && MiscGlobals.attacking:
+			print("attack")
+		
 	
 	
 	#if it's a follower
@@ -229,3 +231,7 @@ func battleStart(pinSpot: Node):
 	battleSpot = pinSpot
 	pinSpot.player = self
 	battleTurnStart()
+
+
+func attack():
+	return

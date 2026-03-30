@@ -26,10 +26,9 @@ metadata/labelText = "RETURN"
 metadata/actionValue = 5
 
 [node name="soundTab" parent="." unique_id=763716368 instance=ExtResource("2_8gl8o")]
-visible = false
 z_index = 2
 position = Vector2(-225, -275)
-metadata/labelText = "SOUND"
+metadata/labelText = "GENERAL"
 metadata/actionValue = 6
 metadata/start = true
 
@@ -67,6 +66,7 @@ metadata/labelText = "MUTE"
 metadata/valueName = "mute"
 
 [node name="KeyboardTab" parent="." unique_id=2111840797 instance=ExtResource("2_8gl8o")]
+visible = false
 z_index = 1
 position = Vector2(0, -275)
 metadata/labelText = "KEYBINDS"

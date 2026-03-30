@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://rbuk2f8fvp84"]
+
+[ext_resource type="FontFile" uid="uid://d0vw0t77g8i2o" path="res://Dotemp-8bit.ttf" id="1_7uej2"]
+
+[resource]
+line_spacing = 6.0
+font = ExtResource("1_7uej2")
+font_size = 38

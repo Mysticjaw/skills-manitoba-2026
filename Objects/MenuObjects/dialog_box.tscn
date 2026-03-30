@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cawuy8c3g7psb"]
+
+[ext_resource type="Texture2D" uid="uid://dj3qhpg5s271y" path="res://Sprites/UI/Individuals/textbox_1.png" id="1_raqhf"]
+[ext_resource type="LabelSettings" uid="uid://rbuk2f8fvp84" path="res://mainLabel.tres" id="2_r3jb6"]
+[ext_resource type="Script" uid="uid://vr548qpjfm74" path="res://Objects/MenuObjects/dialogue.gd" id="4_r3jb6"]
+[ext_resource type="LabelSettings" uid="uid://bkatl1yeyfeo1" path="res://titleLabel.tres" id="4_yvafn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cy0ef"]
+texture = ExtResource("1_raqhf")
+texture_margin_left = 300.0
+texture_margin_top = 2048.0
+texture_margin_right = 55.0
+texture_margin_bottom = 2048.0
+
+[sub_resource type="Theme" id="Theme_8yvvv"]
+Panel/styles/panel = SubResource("StyleBoxTexture_cy0ef")
+
+[node name="dialogBox" type="Control" unique_id=215957033]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -364.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="." unique_id=198126709]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -295.0
+offset_bottom = 126.42856
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 0.7)
+theme = SubResource("Theme_8yvvv")
+
+[node name="text" type="Label" parent="." unique_id=1879522983]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = -212.0
+offset_right = -65.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = ExtResource("2_r3jb6")
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.72
+script = ExtResource("4_r3jb6")
+
+[node name="title" type="Label" parent="." unique_id=517772326]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -289.0
+offset_right = 248.0
+offset_bottom = -240.0
+grow_vertical = 0
+text = "PEEPEE POOPOO"
+label_settings = ExtResource("4_yvafn")
+vertical_alignment = 1

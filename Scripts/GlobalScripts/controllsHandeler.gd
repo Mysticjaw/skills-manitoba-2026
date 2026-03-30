@@ -6,6 +6,9 @@ extends Control
 #which tab is selected
 var selectedNo: int = 0
 
+
+const inputTypes: Array[String] = ["BtnA", "BtnB", "BtnX", "BtnY", "Left", "Right", "Up", "Down", "Pause"]
+
 #hide it to start
 func _ready() -> void:
 	hide()
@@ -63,13 +66,12 @@ func _input(event):
 		MiscGlobals.pad = false
 		if currentRemapK != null:	#if remapping is happening
 			#store the old event to remove it from the actions
-			var removeInput: InputEvent = InputMap.action_get_events("key" + currentRemapK)[0]
-			#remove the old event from the key and true versions of the input
-			InputMap.action_erase_event("key" + currentRemapK, removeInput)
-			InputMap.action_erase_event("true" + currentRemapK, removeInput)
-			#add the new input to the key and true versions of the input
-			InputMap.action_add_event("key" + currentRemapK, event)
-			InputMap.action_add_event("true" + currentRemapK, event)
+			var oldInput: InputEvent = InputMap.action_get_events("key" + currentRemapK)[0]
+			for i in inputTypes:
+				if oldInput == InputMap.action_get_events("key" + i)[0]:
+					print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+					changeKeymap(oldInput, i)
+			changeKeymap(event, currentRemapK)
 			#bring back the selecter
 			selecterKeep.show()
 			#clear the input being remapped
@@ -96,3 +98,14 @@ func setKeymapsFromFile() -> void:
 	#if we set up a file to store the settings this should
 	#set up the keymaps on opening
 	pass
+
+func changeKeymap(newEvent: InputEvent, remap: String):
+	var removeInput: InputEvent = InputMap.action_get_events("key" + currentRemapK)[0]
+	print(InputMap.action_get_events("key" + currentRemapK)[0])
+	#remove the old event from the key and true versions of the input
+	InputMap.action_erase_event("key" + currentRemapK, removeInput)
+	InputMap.action_erase_event("true" + currentRemapK, removeInput)
+	#add the new input to the key and true versions of the input
+	InputMap.action_add_event("key" + currentRemapK, newEvent)
+	InputMap.action_add_event("true" + currentRemapK, newEvent)
+	

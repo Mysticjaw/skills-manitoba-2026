@@ -4,6 +4,7 @@ var startPos: Vector2 = Vector2(0, 0)
 
 var pad: bool = false
 
+var attacking: bool = true
 
 const inputBuffer = 0.3
 
