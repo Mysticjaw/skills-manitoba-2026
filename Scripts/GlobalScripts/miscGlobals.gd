@@ -6,6 +6,10 @@ var pad: bool = false
 
 var attacking: bool = true
 
+var activeText: String = "haiiiiii!.!!!.2@3....... zdcmzd?!.11!?/!?!.1.1?????!!!!>>!>!...!!!/.!!!fy mame is [insert name here]"
+var activeTextName: String = "AAAAAAAAAAAA"
+var showingTextBox: bool = true
+
 const inputBuffer = 0.3
 
 var healths: Array[int]

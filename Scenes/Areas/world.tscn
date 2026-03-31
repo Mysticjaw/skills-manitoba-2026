@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://lchxqukyjdxn" path="res://Sprites/tilemaps/fixed a problem.png" id="5_0qglv"]
 [ext_resource type="PackedScene" uid="uid://cnfnt1coqwv1s" path="res://Objects/GameObjects/OverworldStuff/camera_cage.tscn" id="5_2pjc6"]
 [ext_resource type="PackedScene" uid="uid://cawuy8c3g7psb" path="res://Objects/MenuObjects/dialog_box.tscn" id="6_0qglv"]
+[ext_resource type="PackedScene" uid="uid://c55bdc8dn6q88" path="res://Objects/GameObjects/PlayerStuff/sword_attack.tscn" id="7_yin3e"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gwl6k"]
 
@@ -509,3 +510,6 @@ anchors_preset = 15
 anchor_top = 0.0
 offset_top = 0.0
 grow_vertical = 2
+
+[node name="swordAttack" parent="DialogueLayer" unique_id=684591365 instance=ExtResource("7_yin3e")]
+position = Vector2(-183, 49)
