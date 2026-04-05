@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7bp8j8tkwiog" path="res://Sprites/UI/Individuals/selected.png" id="2_mc8bt"]
 [ext_resource type="Texture2D" uid="uid://cxigxk4o62564" path="res://Sprites/UI/Individuals/button.png" id="3_scswv"]
 [ext_resource type="Script" uid="uid://ck5l2nhcmbsd7" path="res://Objects/MenuObjects/checkSelectedSprite.gd" id="4_ja8kt"]
+[ext_resource type="FontFile" uid="uid://d0vw0t77g8i2o" path="res://Dotemp-8bit.ttf" id="5_scswv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1on"]
 size = Vector2(184, 40)
@@ -28,6 +29,7 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_opcqn"]
+font = ExtResource("5_scswv")
 
 [sub_resource type="GDScript" id="GDScript_opcqn"]
 script/source = "extends Label
@@ -52,15 +54,15 @@ shape = SubResource("RectangleShape2D_eh1on")
 position = Vector2(-87.99999, -32)
 scale = Vector2(0.40993306, 0.2901554)
 sprite_frames = SubResource("SpriteFrames_oehs2")
-animation = &"unselected"
+animation = &"selected"
 centered = false
 script = ExtResource("4_ja8kt")
 
 [node name="optionText" type="Label" parent="." unique_id=80227009]
-offset_left = -64.0
-offset_top = -16.0
+offset_left = -75.0
+offset_top = -14.0
 offset_right = 72.0
-offset_bottom = 7.0
+offset_bottom = 17.0
 label_settings = SubResource("LabelSettings_opcqn")
 horizontal_alignment = 2
 script = SubResource("GDScript_opcqn")

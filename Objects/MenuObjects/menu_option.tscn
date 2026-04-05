@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7bp8j8tkwiog" path="res://Sprites/UI/Individuals/selected.png" id="2_f41pm"]
 [ext_resource type="Script" uid="uid://ck5l2nhcmbsd7" path="res://Objects/MenuObjects/checkSelectedSprite.gd" id="3_1ed4y"]
 [ext_resource type="Texture2D" uid="uid://cxigxk4o62564" path="res://Sprites/UI/Individuals/button.png" id="3_5ug38"]
+[ext_resource type="FontFile" uid="uid://d0vw0t77g8i2o" path="res://Dotemp-8bit.ttf" id="5_5ug38"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1on"]
 size = Vector2(184, 56)
@@ -28,6 +29,7 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_opcqn"]
+font = ExtResource("5_5ug38")
 
 [sub_resource type="GDScript" id="GDScript_opcqn"]
 script/source = "extends Label
@@ -61,6 +63,7 @@ offset_left = -62.0
 offset_top = -16.0
 offset_right = 74.0
 offset_bottom = 7.0
+text = "aA"
 label_settings = SubResource("LabelSettings_opcqn")
 horizontal_alignment = 1
 script = SubResource("GDScript_opcqn")

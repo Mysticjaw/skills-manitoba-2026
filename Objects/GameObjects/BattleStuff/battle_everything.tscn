@@ -35,7 +35,7 @@ metadata/_edit_lock_ = true
 
 [node name="outerCage" parent="." unique_id=562063103 instance=ExtResource("3_7qbc0")]
 position = Vector2(-288, -392.00003)
-scale = Vector2(1527.4572, 930.9538)
+scale = Vector2(1623.8529, 920.08856)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1690665903]
 collision_mask = 0

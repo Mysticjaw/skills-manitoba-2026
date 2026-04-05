@@ -44,7 +44,7 @@ func _process(_delta: float) -> void:
 					
 				
 				else:	#if not
-					print("")	#then deactivate the parts
+					#print("")	#then deactivate the parts
 					for j in DIRECTIONS.size():
 						#store the part that must be toggled
 						var storedEvent: InputEvent = (InputMap.action_get_events("joy" + JOYS[i] + DIRECTIONS[j]))[0]
@@ -99,7 +99,7 @@ func setKeymapsFromFile() -> void:
 	#set up the keymaps on opening
 	pass
 
-func changeKeymap(newEvent: InputEvent, remap: String):
+func changeKeymap(newEvent: InputEvent, _remap: String):
 	var removeInput: InputEvent = InputMap.action_get_events("key" + currentRemapK)[0]
 	print(InputMap.action_get_events("key" + currentRemapK)[0])
 	#remove the old event from the key and true versions of the input

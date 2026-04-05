@@ -1,12 +1,12 @@
 extends Node2D
 
-var playerWheel: Node
+@onready var playerWheel: Node = get_node("playerWheel")
 
-var menuCage: Node
+@onready var menuCage: Node = get_node("menuCage")
 
-var outerCage: Node
+@onready var outerCage: Node = get_node("outerCage")
 
-var parent: Node
+@onready var parent: Node = get_parent()
 
 var turningDirection: int = 0
 
@@ -21,23 +21,30 @@ var currentFront: int = 1
 var controlable: bool = true
 var inMenu: bool = false
 
-var rotating: bool = false
+var rotating: bool = true
+
+var currentTurn: int = 0
+
+var turnsSelected: Array[String]
+
+var currentActive: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	playerWheel = get_node("playerWheel")
-	menuCage = get_node("menuCage")
-	outerCage = get_node("outerCage")
-	parent = get_parent()
 	parent.battle = self
+	turnsSelected.resize(players.size() - 1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("trueBtnB") && controlable && inMenu:
-		players[currentFront].followPos = players[currentFront].MAIN_VAL
-		get_parent().bringToFront(players[currentFront])
-		inMenu = false
+	if Input.is_action_just_pressed("trueBtnA") && controlable && inMenu:
+		next()
+	elif Input.is_action_just_pressed("trueBtnB") && controlable && inMenu:
+		next()
+	elif Input.is_action_just_pressed("trueBtnX") && controlable && inMenu:
+		next()
+	elif Input.is_action_just_pressed("trueBtnY") && controlable && inMenu:
+		next()
 	if ((Input.is_action_just_pressed("trueLeft") && rotating) || Input.is_action_just_pressed("trueTriggerL")) && controlable && inMenu:
 		print("left")
 		var amountMoved: int = 0
@@ -54,6 +61,7 @@ func _process(delta: float) -> void:
 			elif MiscGlobals.healths[players[nextFront].charVal] != 0:
 				print("sucessfully selected")
 				currentFront = nextFront
+				currentActive = currentFront
 				findingFront = false
 			
 		rotatingTarget = playerWheel.rotation - ((2 * PI / (players.size() - 1)) * amountMoved)
@@ -76,6 +84,7 @@ func _process(delta: float) -> void:
 			elif MiscGlobals.healths[players[nextFront].charVal] != 0:
 				("sucessfully selected")
 				currentFront = nextFront
+				currentActive = currentFront
 				findingFront = false
 			
 		rotatingTarget = playerWheel.rotation + ((2 * PI / (players.size() - 1)) * amountMoved)
@@ -102,3 +111,27 @@ func prepareBattle(playersNew: Array[Node]):
 			players[players.size() - 1].battleStart((get_node("playerWheel/holder" + str(players.size() - 1))))
 		
 	
+
+func releasePlayer():
+	menuCage.set_collision_layer_value(17, false)
+	players[currentFront].followPos = players[currentFront].MAIN_VAL
+	players[currentFront].storedX = 1
+	players[currentFront].storedY = 0
+	get_parent().bringToFront(players[currentFront])
+	inMenu = false
+
+func next():
+	currentActive += 1
+	if currentActive >= players.size():
+		currentActive -= (players.size() - 1)
+	if turnsSelected[turnsSelected.size()] != "":
+		releasePlayer()
+	
+
+func back():
+	var latestTurn: int
+	for i: int in turnsSelected.size():
+		if turnsSelected[i] != "":
+			latestTurn = i
+		
+	turnsSelected 

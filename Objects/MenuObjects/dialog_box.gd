@@ -37,19 +37,19 @@ func _process(delta: float) -> void:
 		var scrollMult: float = setSpeed()
 		if Input.is_action_pressed("trueBtnY"):
 			scrollMult = SKIP_CHAR_SPEED
-			if get_node("text").visible_characters >= get_node("text").text.length():
-				print("NEXT BOX")
-		if Input.is_action_just_pressed("trueBtnB"):
-			if get_node("text").visible_characters >= get_node("text").text.length():
-				print("NEXT BOX")
+			if get_node("text").visible_characters >= get_node("text").text.length() - 1:
+				MiscGlobals.nextBox()
+		if Input.is_action_just_pressed("trueBtnA"):
+			if get_node("text").visible_characters >= get_node("text").text.length() - 1:
+				MiscGlobals.nextBox()
 			else:
-				get_node("text").visible_characters = get_node("text").text.length()
+				get_node("text").visible_characters = get_node("text").text.length() - 1
 		if revealingText:
 			timeSinceShow += delta * scrollMult
-			while timeSinceShow > SCROLL_SPEED && get_node("text").visible_characters < get_node("text").text.length():
+			while timeSinceShow > SCROLL_SPEED && get_node("text").visible_characters < get_node("text").text.length() - 1:
 				get_node("text").visible_characters += 1
 				timeSinceShow -= SCROLL_SPEED	
-			if get_node("text").visible_characters >= get_node("text").text.length():
+			if get_node("text").visible_characters >= get_node("text").text.length() - 1:
 				print("ALL SHOWN")
 				revealingText = false
 				timeSinceShow = 0 

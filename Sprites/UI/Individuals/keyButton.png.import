@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyc2wr12c4rk"
-valid=false
+uid="uid://dcugcqpngp0y2"
+path="res://.godot/imported/keyButton.png-33a68341e3a4cd797920ffd01dba5600.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Sprites/UI/SpriteSheets/._option.png"
+source_file="res://Sprites/UI/Individuals/keyButton.png"
+dest_files=["res://.godot/imported/keyButton.png-33a68341e3a4cd797920ffd01dba5600.ctex"]
 
 [params]
 

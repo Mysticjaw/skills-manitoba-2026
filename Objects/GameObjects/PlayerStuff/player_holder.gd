@@ -29,6 +29,8 @@ var cameraPos: Vector2
 
 var camera: Node
 
+var attacking: bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	#rezising the array to the max size and filling it with NULL_VALUEs
 	pastLocations.resize(maxLocationsSize)
@@ -38,11 +40,13 @@ func _ready() -> void:	#rezising the array to the max size and filling it with N
 	players.resize(get_children().size() - 1)
 	print(players.size())
 	cameraPos = MiscGlobals.startPos
-	#startBattle()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("trueBtnB") && !battle:
+		startBattle()
+	
 	if thisLocation:	#if there's a location ready to be stored then start storing it
 		newLocation(thisLocation)
 
@@ -77,11 +81,11 @@ func setPlayer(newPlayer: Node, value: int):
 	players[value] = newPlayer
 
 func startBattle():
-	if !battle:
-		battle = battleStuff.instantiate()
-		add_child(battle)	#the ready happens after this
-		print(players.size())
-		battle.prepareBattle(players)
+	battle = battleStuff.instantiate()
+	battle.global_position = players[0].global_position
+	add_child(battle)	#the ready happens after this
+	print(players.size())
+	battle.prepareBattle(players)
 
 func bringToFront(newFront: Node):
 	var newFrontVal: int = -1

@@ -32,6 +32,7 @@ func _ready() -> void:
 
 #proceed.
 func _process(_delta: float) -> void:
+	print(Settings.settingsValues["joyD"])
 	if get_parent().visible && visible:	#menu items don't work in the background so you can disable them by hiding them
 		if !current:	#if nothng is selected
 			reset()	#go to initial position

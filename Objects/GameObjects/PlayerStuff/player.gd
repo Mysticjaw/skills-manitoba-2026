@@ -5,6 +5,10 @@ extends CharacterBody2D
 @onready var anim = get_node("playerAnimations")
 @onready var hitbox = get_node("playerHitbox")
 @onready var parent = get_parent()
+
+@onready var swordSlash = preload("res://Objects/GameObjects/PlayerStuff/sword_attack.tscn")
+@onready var fireBall = preload("res://Objects/GameObjects/PlayerStuff/rock_projectile.tscn")
+
 #what direction am I facing (vertically)
 var storedY: int = 0
 #what direction am I facing (horizontally)
@@ -50,7 +54,6 @@ var slideWalking: bool = true
 var battleSpot: Node
 
 func _ready() -> void:
-	print()
 	global_position = MiscGlobals.startPos
 	#setting up metadatas to be accsessed more easily and setting up the initial varibles
 	changeCharacter(get_meta("initChar"))
@@ -70,10 +73,14 @@ func _ready() -> void:
 #ah yes, physics
 #the only ap course that somehow makes you less smart then you were when you started
 func _physics_process(delta: float) -> void:
+	#print(Settings.settingsValues["joyD"])
 	if followPos == 0:	#this means it's in control
 		hitbox.disabled = false	#you want the player to have a hitbox
 		var directionY := Input.get_axis("trueUp", "trueDown")	#setting up directions
 		var directionX := Input.get_axis("trueLeft", "trueRight")
+		if midAttack:
+			directionX = 0
+			directionY = 0
 		#this is for standerdizing the speed (I almost called it multiplier well knoing I was going to divide by it):
 		var divider: float = sqrt((directionY * directionY) + (directionX * directionX))
 		if divider != 0:	#don't want to divide by zero
@@ -84,28 +91,33 @@ func _physics_process(delta: float) -> void:
 			velocity.y = directionY * SPEED
 			if directionY > 0:
 				storedY = 1
+				#print("storedY is " + str(storedY))
 			elif directionY < 0:
 				storedY = -1	#I deeply opollogize for my actions a few comments ago, my language was unnessisary and profane, it will not happen again
+				#print("storedY is " + str(storedY))
 		else:	#approach zero if not moving Y-ly
 			velocity.y = move_toward(velocity.y, 0, SPEED)	#(shit I spelled apologize wrong)
 		if directionX != 0:	#if directionX, chane the velocity accordingly
 			velocity.x = directionX * SPEED
 			if abs(directionX) >= abs(directionY):
 				storedY = 0	#this means it's facing horizontaly
+				#print("storedY is " + str(storedY))
 			
 		else:	#approach zero
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		if velocity.x < 0 && storedY == 0:	#if moving in that direction, flip it
 			storedX = -1
-		else:	#otherwise, don't
-			if storedY:
-				storedX = 0
-			else:
-				storedX = 1
-		if velocity.y || velocity.x:	#if it's moving
+			#print("storedX is " + str(storedX))
+		elif velocity.x > 0 && storedY == 0:	#otherwise, don't
+			storedX = 1
+			#print("storedX is " + str(storedX))
+		elif abs(velocity.y) > 0:
+			storedX = 0
+		if (velocity.y || velocity.x) && !midAttack:	#if it's moving
 			anim.play("move" + str(storedY) + str(storedX))	#play an ainimation based off of the Y direction
 			if storedY != 0:	#if it's not facing horizontally it shouldn't be flipped
 				storedX = 0
+				#print("storedX is " + str(storedX))
 			periodTimer += delta	#this variable is just for counting so that it updates the past locations infrquently enough
 			parent.moving = true	#mark in the parent that it's moving
 			if periodTimer >= PERIOD:	#if the right amount of time has elapsed
@@ -125,6 +137,8 @@ func _physics_process(delta: float) -> void:
 			cameraMoving = true
 		if cameraMoving:
 			var velocityMult = Vector2(1, 1)
+			if midAttack:
+				velocityMult = Vector2(0, 0)
 			if abs(parent.pastLocations[1].x - global_position.x) <= 0.1:
 				velocityMult.x = 0	
 			if abs(parent.pastLocations[1].y - global_position.y) <= 0.1:
@@ -133,10 +147,13 @@ func _physics_process(delta: float) -> void:
 			parent.cameraPos.x = move_toward(parent.cameraPos.x, global_position.x + (velocity.x * velocityMult.x * CAMERA_AHEAD), abs(parent.cameraPos.x - global_position.x + (velocity.x * CAMERA_AHEAD)) * movingTime)
 			parent.cameraPos.y = move_toward(parent.cameraPos.y, global_position.y + (velocity.y * velocityMult.y * CAMERA_AHEAD), abs(parent.cameraPos.y - global_position.y + (velocity.y * CAMERA_AHEAD)) * movingTime)
 			
-		move_and_slide()
+		if !midAttack:
+			move_and_slide()
 		
-		if Input.is_action_just_pressed("trueBtnA") && MiscGlobals.attacking:
+		if Input.is_action_just_pressed("trueBtnA") && get_parent().attacking && !midAttack:
 			print("attack")
+			midAttack = true
+			attack()
 		
 	
 	
@@ -192,13 +209,9 @@ func _physics_process(delta: float) -> void:
 						if storedY == 0:
 							if slidingTo[0].x - global_position.x < 0:
 								storedX = -1
-							else:
-								sprite.flip_h = false
-						else:
-							sprite.flip_h = false
+							elif slidingTo[0].x - global_position.x > 0:
+								storedX = 1
 						anim.play("move" + str(storedY))
-					else:
-						sprite.flip_h = false
 					global_position += (slidingTo[0] - global_position) * (delta / slideTimes[0])
 				slideTimes[0] -= delta
 				
@@ -234,4 +247,21 @@ func battleStart(pinSpot: Node):
 
 
 func attack():
-	return
+	match charVal:
+		0:
+			#sword
+			print("swordAttack")
+			var slash: Node = swordSlash.instantiate()
+			slash.direction = Vector2(storedX, storedY)
+			add_child(slash)
+		1:
+			#fireBall
+			var fire: Node = fireBall.instantiate()
+			fire.direction = Vector2(storedX, storedY)
+			fire.player = self
+			add_sibling(fire)
+			print("projectile")
+		2:
+			#sheild bash
+			print("sheild bash")
+			midAttack = false
