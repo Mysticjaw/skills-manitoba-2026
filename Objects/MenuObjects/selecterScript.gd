@@ -32,6 +32,7 @@ func _ready() -> void:
 
 #proceed.
 func _process(_delta: float) -> void:
+	print(Settings.settingsValues["joyD"])
 	if get_parent().visible && visible:	#menu items don't work in the background so you can disable them by hiding them
 		if !current:	#if nothng is selected
 			reset()	#go to initial position
@@ -66,6 +67,7 @@ func processMovement():
 	if !stickPressed || !MiscGlobals.pad:	#if either using keyboard or not already holding a direction
 		if (directionX < 0 && abs(directionX) > abs(directionY) && MiscGlobals.pad) || Input.is_action_just_pressed("trueLeft"):	#get input
 				#update directions
+				
 			if leftwards:
 				rightwards = current
 				current = leftwards

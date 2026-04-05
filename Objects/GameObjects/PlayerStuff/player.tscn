@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjgwvmcm63nps"]
 
 [ext_resource type="Script" uid="uid://d3xktatvonq4q" path="res://Objects/GameObjects/PlayerStuff/player.gd" id="1_onrkg"]
-[ext_resource type="SpriteFrames" uid="uid://samet6yu0nm7" path="res://Objects/GameObjects/PlayerStuff/player3SpriteFrames.tres" id="2_phekc"]
+[ext_resource type="SpriteFrames" uid="uid://bvqn86d3tl0et" path="res://Objects/GameObjects/PlayerStuff/player0SpriteFrames.tres" id="2_phekc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(48, 48)
@@ -567,7 +567,7 @@ shape = SubResource("RectangleShape2D_onrkg")
 position = Vector2(-4.7683716e-07, 1.0000005)
 scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("2_phekc")
-animation = &"defaultRight"
+animation = &"defaultLeft"
 script = SubResource("GDScript_phekc")
 
 [node name="playerAnimations" type="AnimationPlayer" parent="." unique_id=822475774]

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://1w1s62t10ik8"]
+
+[ext_resource type="Script" uid="uid://c6cfsmxrmp7nt" path="res://Objects/GameObjects/BattleStuff/battle_holder.gd" id="1_4gnsm"]
+
+[sub_resource type="GDScript" id="GDScript_4gnsm"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_070r5"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="battleHolder" type="Node2D" unique_id=1110322732]
+script = ExtResource("1_4gnsm")
+
+[node name="textHealth" type="Label" parent="." unique_id=729290772]
+offset_left = 16.0
+offset_top = -40.0
+offset_right = 56.0
+offset_bottom = -17.0
+script = SubResource("GDScript_4gnsm")
+
+[node name="textMana" type="Label" parent="." unique_id=239354811]
+offset_left = 16.0
+offset_top = -40.0
+offset_right = 56.0
+offset_bottom = -17.0
+script = SubResource("GDScript_070r5")

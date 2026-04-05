@@ -14,3 +14,12 @@ var settingsValues: Dictionary = {	#more will be added eventually
 #set a setting to a value
 func setSetting(valName: String, value):
 	settingsValues[valName] = value
+	if !settingsValues["joyL"] && !settingsValues["joyR"] && !settingsValues["joyD"]:
+		print("all off")
+		if valName == "joyD":
+			settingsValues["joyL"] = true
+			print("joyL is true")
+			print(settingsValues["joyL"])
+		else:
+			settingsValues["joyD"] = true
+			print("joyD is true")

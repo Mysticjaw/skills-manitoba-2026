@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://bkatl1yeyfeo1"]
+
+[ext_resource type="FontFile" uid="uid://d0vw0t77g8i2o" path="res://Dotemp-8bit.ttf" id="1_aneln"]
+
+[resource]
+font = ExtResource("1_aneln")
+font_size = 29
